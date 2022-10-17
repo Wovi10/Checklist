@@ -1,6 +1,7 @@
 package com.wovi10.checklist;
 
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
@@ -8,6 +9,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Popup;
+import javafx.stage.Stage;
 
 public class ChecklistController {
     @FXML
@@ -21,35 +23,40 @@ public class ChecklistController {
     @FXML
     protected void onAddButtonClick() {
         String itemName = requestItemName();
-        HBox checklistItem = createItem();
+        HBox checklistItem = createItem(itemName);
         checklist_Group.getChildren().add(checklistItem);
     }
 
     private String requestItemName() {
-        Popup popup = new Popup();
+        Stage popup = new Stage();
         Label questionLabel = new Label("What item do you want to add?");
         TextField answerField = new TextField();
-        Button answerButton = new Button();
-        popup.getContent().addAll(questionLabel, answerField, answerButton);
-        answerButton.setOnAction(e -> giveAnswer(answerField));
+        Button answerButton = new Button("Add");
+        VBox popupContent = new VBox();
+
+        popupContent.getChildren().addAll(questionLabel, answerField, answerButton);
+        answerButton.setOnAction(e -> itemToAdd = answerField.getText());
+        Scene popupScene = new Scene(popupContent, 300, 200);
+        popup.setScene(popupScene);
+        popup.show();
+        System.out.println(itemToAdd);
         return itemToAdd;
     }
 
-    private void giveAnswer(TextField answerField) {
-        itemToAdd = answerField.getText();
-    }
-
-    private HBox createItem() {
+    private HBox createItem(String itemName) {
         HBox item = new HBox();
         CheckBox checkBox = createCheckBox();
-        TextField textField = createTextField();
+        TextField textField = createTextField(itemName);
         item.getChildren().add(checkBox);
         item.getChildren().add(textField);
         return item;
     }
 
-    private TextField createTextField() {
-        return new TextField();
+    private TextField createTextField(String itemName) {
+        TextField textField = new TextField();
+        textField.setText(itemName);
+        textField.setEditable(false);
+        return textField;
     }
 
     private CheckBox createCheckBox() {
