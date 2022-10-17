@@ -1,7 +1,5 @@
 package com.wovi10.checklist;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -12,9 +10,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import java.util.Objects;
-
 public class ChecklistController {
+    private final String strikethroughStyle = String.valueOf(
+            ChecklistController.class.getResource("css/strikethrough.css"));
     @FXML
     public VBox vBox;
     public VBox checklist_Group;
@@ -65,13 +63,11 @@ public class ChecklistController {
 
     private CheckBox createCheckBox(Label nameLabel) {
         CheckBox checkBox = new CheckBox();
-        checkBox.selectedProperty().addListener(new ChangeListener<Boolean>() {
-            @Override
-            public void changed(ObservableValue<? extends Boolean> observableValue, Boolean oldValue, Boolean newValue) {
-                if (newValue) {
-                    nameLabel.getStylesheets().add(String.valueOf(
-                            ChecklistController.class.getResource("css/strikethrough.css")));
-                }
+        checkBox.selectedProperty().addListener((observableValue, oldValue, newValue) -> {
+            if (newValue) {
+                nameLabel.getStylesheets().add(strikethroughStyle);
+            }else{
+                nameLabel.getStylesheets().remove(strikethroughStyle);
             }
         });
         return checkBox;
