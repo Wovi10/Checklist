@@ -7,9 +7,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+
+import java.util.Objects;
 
 public class ChecklistController {
     @FXML
@@ -27,19 +30,19 @@ public class ChecklistController {
     private String requestItemName() {
         Stage popup = new Stage();
         Label questionLabel = new Label("What item do you want to add?");
-        Label answerLabel = new Label();
+        TextField answerField = new TextField();
         Button answerButton = new Button("Add");
         VBox popupContent = new VBox();
 
-        popupContent.getChildren().addAll(questionLabel, answerLabel, answerButton);
-        answerButton.setOnAction(e -> giveAnswer(answerLabel, popup));
+        popupContent.getChildren().addAll(questionLabel, answerField, answerButton);
+        answerButton.setOnAction(e -> giveAnswer(answerField, popup));
         Scene popupScene = new Scene(popupContent, 300, 200);
         popup.setScene(popupScene);
         popup.showAndWait();
         return itemToAdd;
     }
 
-    private void giveAnswer(Label answerLabel, Stage popup) {
+    private void giveAnswer(TextField answerLabel, Stage popup) {
         itemToAdd = answerLabel.getText();
         popup.close();
 
@@ -66,7 +69,8 @@ public class ChecklistController {
             @Override
             public void changed(ObservableValue<? extends Boolean> observableValue, Boolean oldValue, Boolean newValue) {
                 if (newValue) {
-                    nameLabel.getStylesheets().addAll(ChecklistApplication.class.getResource("css/strikethrough.css").toExternalForm());
+                    nameLabel.getStylesheets().add(String.valueOf(
+                            ChecklistController.class.getResource("css/strikethrough.css")));
                 }
             }
         });
