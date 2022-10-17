@@ -1,5 +1,7 @@
 package com.wovi10.checklist;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -60,6 +62,14 @@ public class ChecklistController {
 
     private CheckBox createCheckBox(Label nameLabel) {
         CheckBox checkBox = new CheckBox();
+        checkBox.selectedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observableValue, Boolean oldValue, Boolean newValue) {
+                if (newValue) {
+                    nameLabel.getStylesheets().addAll(ChecklistApplication.class.getResource("css/strikethrough.css").toExternalForm());
+                }
+            }
+        });
         return checkBox;
     }
 }
