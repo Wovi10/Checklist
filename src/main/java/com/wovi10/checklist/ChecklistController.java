@@ -1,11 +1,13 @@
 package com.wovi10.checklist;
 
 import javafx.fxml.FXML;
-import javafx.scene.Group;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Popup;
 
 public class ChecklistController {
     @FXML
@@ -14,11 +16,27 @@ public class ChecklistController {
     public HBox group_Item;
     public CheckBox item_CB;
     public TextField item_Name;
+    private String itemToAdd;
 
     @FXML
     protected void onAddButtonClick() {
+        String itemName = requestItemName();
         HBox checklistItem = createItem();
         checklist_Group.getChildren().add(checklistItem);
+    }
+
+    private String requestItemName() {
+        Popup popup = new Popup();
+        Label questionLabel = new Label("What item do you want to add?");
+        TextField answerField = new TextField();
+        Button answerButton = new Button();
+        popup.getContent().addAll(questionLabel, answerField, answerButton);
+        answerButton.setOnAction(e -> giveAnswer(answerField));
+        return itemToAdd;
+    }
+
+    private void giveAnswer(TextField answerField) {
+        itemToAdd = answerField.getText();
     }
 
     private HBox createItem() {

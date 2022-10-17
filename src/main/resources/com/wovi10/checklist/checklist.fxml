@@ -19,7 +19,7 @@
     <VBox fx:id="checklist_Group" spacing="10">
         <HBox fx:id="group_Item">
             <CheckBox fx:id="item_CB" />
-            <TextField fx:id="item_Name"/>
+            <TextField fx:id="item_Name" />
         </HBox>
     </VBox>
 </VBox>
