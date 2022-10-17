@@ -35,12 +35,16 @@ public class ChecklistController {
         VBox popupContent = new VBox();
 
         popupContent.getChildren().addAll(questionLabel, answerField, answerButton);
-        answerButton.setOnAction(e -> itemToAdd = answerField.getText());
+        answerButton.setOnAction(e -> giveAnswer(answerField));
         Scene popupScene = new Scene(popupContent, 300, 200);
         popup.setScene(popupScene);
         popup.show();
-        System.out.println(itemToAdd);
         return itemToAdd;
+    }
+
+    private void giveAnswer(TextField answerField) {
+        itemToAdd = answerField.getText();
+        System.out.println("made it");
     }
 
     private HBox createItem(String itemName) {
