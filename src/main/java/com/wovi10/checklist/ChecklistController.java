@@ -1,29 +1,40 @@
 package com.wovi10.checklist;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class ChecklistController {
     @FXML
     public VBox vBox;
-    public Group checklist_Group;
-    public Group group_Item;
+    public VBox checklist_Group;
+    public HBox group_Item;
     public CheckBox item_CB;
     public TextField item_Name;
-    @FXML
-    private Label welcomeText;
 
     @FXML
     protected void onAddButtonClick() {
-        createNewItem();
+        HBox checklistItem = createItem();
+        checklist_Group.getChildren().add(checklistItem);
     }
 
-    private void createNewItem() {
-        checklist_Group.getChildren().add(group_Item);
+    private HBox createItem() {
+        HBox item = new HBox();
+        CheckBox checkBox = createCheckBox();
+        TextField textField = createTextField();
+        item.getChildren().add(checkBox);
+        item.getChildren().add(textField);
+        return item;
+    }
+
+    private TextField createTextField() {
+        return new TextField();
+    }
+
+    private CheckBox createCheckBox() {
+        return new CheckBox();
     }
 }

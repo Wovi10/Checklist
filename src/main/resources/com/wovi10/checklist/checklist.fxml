@@ -3,9 +3,8 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.Group?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <VBox fx:id="vBox"
       xmlns="http://javafx.com/javafx"
@@ -16,12 +15,11 @@
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
     </padding>
 
-    <Group fx:id="checklist_Group">
-        <Group fx:id="group_Item">
+    <Button text="Add" onAction="#onAddButtonClick" />
+    <VBox fx:id="checklist_Group" spacing="10">
+        <HBox fx:id="group_Item">
             <CheckBox fx:id="item_CB" />
             <TextField fx:id="item_Name"/>
-        </Group>
-    </Group>
-    <Label fx:id="welcomeText"/>
-    <Button text="Add" onAction="#onAddButtonClick"/>
+        </HBox>
+    </VBox>
 </VBox>
