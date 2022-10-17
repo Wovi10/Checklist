@@ -8,7 +8,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.stage.Popup;
 import javafx.stage.Stage;
 
 public class ChecklistController {
@@ -35,16 +34,17 @@ public class ChecklistController {
         VBox popupContent = new VBox();
 
         popupContent.getChildren().addAll(questionLabel, answerField, answerButton);
-        answerButton.setOnAction(e -> giveAnswer(answerField));
+        answerButton.setOnAction(e -> giveAnswer(answerField, popup));
         Scene popupScene = new Scene(popupContent, 300, 200);
         popup.setScene(popupScene);
-        popup.show();
+        popup.showAndWait();
         return itemToAdd;
     }
 
-    private void giveAnswer(TextField answerField) {
+    private void giveAnswer(TextField answerField, Stage popup) {
         itemToAdd = answerField.getText();
-        System.out.println("made it");
+        popup.close();
+
     }
 
     private HBox createItem(String itemName) {
