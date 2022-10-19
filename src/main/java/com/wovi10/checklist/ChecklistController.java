@@ -1,11 +1,15 @@
 package com.wovi10.checklist;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -49,17 +53,26 @@ public class ChecklistController {
     private HBox createItem(String itemName) {
         HBox item = new HBox();
         item.setSpacing(10);
+        item.setMaxWidth(vBox.getWidth());
         Label nameLabel = createNameLabel(itemName);
         CheckBox checkBox = create_CheckBox(nameLabel);
-        Button deleteButton = create_DeleteButton(nameLabel);
+        Button deleteButton = create_DeleteButton(item);
         item.getChildren().add(checkBox);
         item.getChildren().add(nameLabel);
+        item.getChildren().add(deleteButton);
+        deleteButton.setAlignment(Pos.CENTER_RIGHT);
         return item;
     }
 
-    private Button create_DeleteButton(Label nameLabel) {
+    private Button create_DeleteButton(HBox item) {
         Button button = new Button();
-//        button.setOnAction();
+        EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                checklist_Group.getChildren().remove(item);
+            }
+        };
+        button.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
         return button;
     }
 
