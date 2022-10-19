@@ -53,15 +53,13 @@ public class ChecklistController {
 
     private HBox createItem(String itemName) {
         HBox item = new HBox();
-
         Label nameLabel = createNameLabel(itemName);
         CheckBox checkBox = create_CheckBox(nameLabel);
-        Region item_region = new Region();
         Button deleteButton = create_DeleteButton(item);
         deleteButton.setAlignment(Pos.CENTER_RIGHT);
+        deleteButton.setPadding(new Insets(5));
         item.getChildren().add(checkBox);
         item.getChildren().add(nameLabel);
-        item.getChildren().add(item_region);
         item.getChildren().add(deleteButton);
         return item;
     }
