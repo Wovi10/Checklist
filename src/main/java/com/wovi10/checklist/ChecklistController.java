@@ -48,6 +48,7 @@ public class ChecklistController {
 
     private HBox createItem(String itemName) {
         HBox item = new HBox();
+        item.setSpacing(10);
         Label nameLabel = createNameLabel(itemName);
         CheckBox checkBox = createCheckBox(nameLabel);
         item.getChildren().add(checkBox);
