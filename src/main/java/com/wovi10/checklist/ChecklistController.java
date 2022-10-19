@@ -11,7 +11,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -57,7 +56,6 @@ public class ChecklistController {
         CheckBox checkBox = create_CheckBox(nameLabel);
         Button deleteButton = create_DeleteButton(item);
         deleteButton.setAlignment(Pos.CENTER_RIGHT);
-        deleteButton.setPadding(new Insets(5));
         item.getChildren().add(checkBox);
         item.getChildren().add(nameLabel);
         item.getChildren().add(deleteButton);
