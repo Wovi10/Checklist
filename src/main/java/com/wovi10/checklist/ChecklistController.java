@@ -58,7 +58,16 @@ public class ChecklistController {
     }
 
     private Button create_DeleteButton(Label nameLabel) {
-        return null;
+        Button button = new Button();
+//        button.setOnAction();
+        return button;
+    }
+
+    @FXML
+    private void onDeleteButtonClick() {
+        String itemName = requestItemName();
+        HBox checklistItem = createItem(itemName);
+        checklist_Group.getChildren().add(checklistItem);
     }
 
     private Label createNameLabel(String itemName) {
