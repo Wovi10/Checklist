@@ -50,10 +50,15 @@ public class ChecklistController {
         HBox item = new HBox();
         item.setSpacing(10);
         Label nameLabel = createNameLabel(itemName);
-        CheckBox checkBox = createCheckBox(nameLabel);
+        CheckBox checkBox = create_CheckBox(nameLabel);
+        Button deleteButton = create_DeleteButton(nameLabel);
         item.getChildren().add(checkBox);
         item.getChildren().add(nameLabel);
         return item;
+    }
+
+    private Button create_DeleteButton(Label nameLabel) {
+        return null;
     }
 
     private Label createNameLabel(String itemName) {
@@ -62,7 +67,7 @@ public class ChecklistController {
         return nameLabel;
     }
 
-    private CheckBox createCheckBox(Label nameLabel) {
+    private CheckBox create_CheckBox(Label nameLabel) {
         CheckBox checkBox = new CheckBox();
         checkBox.selectedProperty().addListener((observableValue, oldValue, newValue) -> {
             if (newValue) {
