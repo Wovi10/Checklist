@@ -11,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -52,15 +53,16 @@ public class ChecklistController {
 
     private HBox createItem(String itemName) {
         HBox item = new HBox();
-        item.setSpacing(10);
-        item.setMaxWidth(vBox.getWidth());
+
         Label nameLabel = createNameLabel(itemName);
         CheckBox checkBox = create_CheckBox(nameLabel);
+        Region item_region = new Region();
         Button deleteButton = create_DeleteButton(item);
+        deleteButton.setAlignment(Pos.CENTER_RIGHT);
         item.getChildren().add(checkBox);
         item.getChildren().add(nameLabel);
+        item.getChildren().add(item_region);
         item.getChildren().add(deleteButton);
-        deleteButton.setAlignment(Pos.CENTER_RIGHT);
         return item;
     }
 
