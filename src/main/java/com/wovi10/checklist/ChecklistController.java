@@ -18,6 +18,12 @@ import javafx.stage.Stage;
 
 import static com.wovi10.checklist.ChecklistConstants.*;
 
+/**
+ * ChecklistController
+ * This class shows what happens when interacting with the checklist form.
+ *
+ * @author - Wout Vinckevleugel (Wovi10)
+ */
 public class ChecklistController {
     private final String strikethroughStyle = String.valueOf(ChecklistController.class.getResource(STRIKETHROUGH_FILE));
     @FXML
@@ -28,6 +34,12 @@ public class ChecklistController {
     public Pane spacer;
     private String itemToAdd;
 
+    /**
+     * When clicking the add button:
+     *         a popup shows to request the name of the checklist item.
+     *         a checklist item gets made.
+     *         the item gets added to the form.
+     */
     @FXML
     protected void onAddButtonClick() {
         String itemName = requestItemName();
