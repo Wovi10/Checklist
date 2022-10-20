@@ -2,7 +2,6 @@ package com.wovi10.checklist;
 
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -13,6 +12,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+
+import static com.wovi10.checklist.ChecklistConstants.DELETE_TEXT;
 
 public class ChecklistController {
     private final String strikethroughStyle = String.valueOf(
@@ -64,21 +65,10 @@ public class ChecklistController {
 
     private Button create_DeleteButton(HBox item) {
         Button button = new Button();
-        EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                checklist_Group.getChildren().remove(item);
-            }
-        };
+        button.setText(DELETE_TEXT);
+        EventHandler<MouseEvent> eventHandler = mouseEvent -> checklist_Group.getChildren().remove(item);
         button.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
         return button;
-    }
-
-    @FXML
-    private void onDeleteButtonClick() {
-        String itemName = requestItemName();
-        HBox checklistItem = createItem(itemName);
-        checklist_Group.getChildren().add(checklistItem);
     }
 
     private Label createNameLabel(String itemName) {
