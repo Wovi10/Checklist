@@ -19,8 +19,7 @@ import javafx.stage.Stage;
 import static com.wovi10.checklist.ChecklistConstants.*;
 
 public class ChecklistController {
-    private final String strikethroughStyle = String.valueOf(
-            ChecklistController.class.getResource(STRIKETHROUGH_FILE));
+    private final String strikethroughStyle = String.valueOf(ChecklistController.class.getResource(STRIKETHROUGH_FILE));
     @FXML
     public VBox vBox;
     @FXML
