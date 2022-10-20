@@ -20,11 +20,11 @@ public class ChecklistItem {
     private final VBox parent;
     private final String strikethroughStyle = String.valueOf(ChecklistController.class.getResource(STRIKETHROUGH_FILE));
 
-    public ChecklistItem(String name, VBox parent) {
+    public ChecklistItem(String name, Checklist parent) {
         item = new HBox();
         Label nameLabel = new Label(name);
         CheckBox checkBox = create_CheckBox(nameLabel);
-        this.parent = parent;
+        this.parent = parent.getChecklist();
         Button deleteButton = create_deleteButton(item);
 
         Pane spacer = new Pane();

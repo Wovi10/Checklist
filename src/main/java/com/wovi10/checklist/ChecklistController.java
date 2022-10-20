@@ -1,13 +1,11 @@
 package com.wovi10.checklist;
 
+import com.wovi10.checklist.utils.Checklist;
 import com.wovi10.checklist.utils.ChecklistItem;
 import com.wovi10.checklist.utils.ChecklistPopup;
 import javafx.fxml.FXML;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-
-import static com.wovi10.checklist.Constants.ChecklistConstants.CHECKED;
 
 /**
  * ChecklistController
@@ -16,14 +14,14 @@ import static com.wovi10.checklist.Constants.ChecklistConstants.CHECKED;
  * @author - Wout Vinckevleugel (Wovi10)
  */
 public class ChecklistController {
+    private final Checklist group = create_group();
     @FXML
     public VBox vBox;
-    @FXML
-    public VBox checklist_Group;
     @FXML
     public Pane spacer;
 
     //region 1 Add button
+
     /**
      * 1
      * When clicking the add button:
@@ -34,11 +32,11 @@ public class ChecklistController {
     @FXML
     protected void onAddButtonClick() {
         String itemName = requestItemName();
-        HBox item = createItem(itemName);
-        checklist_Group.getChildren().add(item);
+        ChecklistItem item = createItem(itemName);
+        group.addItem(item);
+        vBox.getChildren().add(group.getChecklist());
     }
 
-    //region 1.1 requestItemName
     /**
      * 1.1
      * Show popup to request the name of the checklist item.
@@ -49,9 +47,9 @@ public class ChecklistController {
         ChecklistPopup popup = new ChecklistPopup();
         return popup.getItemToAdd();
     }
-    //endregion
 
-    //region 1.2 createItem
+    //region 1.1 requestItemName
+
     /**
      * 1.2
      * Create checklist item.
@@ -59,32 +57,40 @@ public class ChecklistController {
      * @param itemName The name of the item to add.
      * @return The created checklist item.
      */
-    private HBox createItem(String itemName) {
-        ChecklistItem item = new ChecklistItem(itemName, checklist_Group);
-        return item.getItem();
+    private ChecklistItem createItem(String itemName) {
+        return new ChecklistItem(itemName, group);
+    }
+    //endregion
+
+    //region 1.2 createItem
+
+    private Checklist create_group() {
+        return new Checklist();
     }
     //endregion
     //endregion
 
     //region 2 Clear all button
+
     /**
      * 2.0
      * Delete all checklist items on button press.
      */
     @FXML
     protected void onClearAllButtonClick() {
-        checklist_Group.getChildren().clear();
+        group.clearAll();
     }
     //endregion
 
     //region 3 Clear button
+
     /**
      * 3.0
      * Delete on completed items on button press.
      */
     @FXML
     protected void onClearButtonClick() {
-        checklist_Group.getChildren().removeIf(checklist_item -> checklist_item.getAccessibleText().equals(CHECKED));
+        group.clearCompleted();
     }
     //endregion
 }
