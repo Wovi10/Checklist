@@ -7,7 +7,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import static com.wovi10.checklist.Constants.ChecklistConstants.ADD_TEXT;
 import static com.wovi10.checklist.Constants.PopupConstants.*;
 
 /**

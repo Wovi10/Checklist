@@ -14,9 +14,9 @@ import javafx.scene.layout.VBox;
  * @author - Wout Vinckevleugel (Wovi10)
  */
 public class ChecklistController {
-    private final Checklist group = create_group();
+    private final Checklist checklist = create_group();
     @FXML
-    public VBox vBox;
+    public VBox program;
     @FXML
     public Pane spacer;
 
@@ -33,8 +33,11 @@ public class ChecklistController {
     protected void onAddButtonClick() {
         String itemName = requestItemName();
         ChecklistItem item = createItem(itemName);
-        group.addItem(item);
-        vBox.getChildren().add(group.getChecklist());
+        checklist.addItem(item);
+        boolean checklistIsInitialised = program.getChildren().contains(checklist.getChecklist());
+        if (!checklistIsInitialised){
+            program.getChildren().add(checklist.getChecklist());
+        }
     }
 
     /**
@@ -58,7 +61,7 @@ public class ChecklistController {
      * @return The created checklist item.
      */
     private ChecklistItem createItem(String itemName) {
-        return new ChecklistItem(itemName, group);
+        return new ChecklistItem(itemName, checklist);
     }
     //endregion
 
@@ -78,7 +81,7 @@ public class ChecklistController {
      */
     @FXML
     protected void onClearAllButtonClick() {
-        group.clearAll();
+        checklist.clearAll();
     }
     //endregion
 
@@ -90,7 +93,7 @@ public class ChecklistController {
      */
     @FXML
     protected void onClearButtonClick() {
-        group.clearCompleted();
+        checklist.clearCompleted();
     }
     //endregion
 }
