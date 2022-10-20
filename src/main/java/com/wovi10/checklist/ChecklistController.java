@@ -1,6 +1,5 @@
 package com.wovi10.checklist;
 
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
@@ -12,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -62,9 +62,9 @@ public class ChecklistController {
         CheckBox checkBox = create_CheckBox(nameLabel);
         Button deleteButton = create_DeleteButton(item);
         deleteButton.setAlignment(Pos.CENTER_RIGHT);
-        item.getChildren().add(checkBox);
-        item.getChildren().add(nameLabel);
-        item.getChildren().add(deleteButton);
+        Pane item_spacer = new Pane();
+        HBox.setHgrow(item_spacer, Priority.ALWAYS);
+        item.getChildren().addAll(checkBox, nameLabel, item_spacer, deleteButton);
         return item;
     }
 
@@ -96,6 +96,6 @@ public class ChecklistController {
 
     @FXML
     protected void onClearButtonClick() {
-        
+
     }
 }
