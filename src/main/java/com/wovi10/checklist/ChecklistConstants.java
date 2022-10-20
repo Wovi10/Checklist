@@ -5,6 +5,8 @@ public class ChecklistConstants {
     public static String ADD_TEXT = "Add";
     public static String CSS_FOLDER = "css/";
     public static String STRIKETHROUGH_FILE = CSS_FOLDER + "strikethrough.css";
+    public static String CHECKED = "Checked";
+    public static String UNCHECKED = "Unchecked";
 
     //region Popup constants
     public static String POPUP_QUESTION = "What item do you want to add?";

@@ -67,7 +67,7 @@ public class ChecklistController {
         CheckBox checkBox = create_CheckBox(nameLabel, item);
         Button deleteButton = create_DeleteButton(item);
         item.getChildren().addAll(checkBox, nameLabel, item_spacer, deleteButton);
-        item.setAccessibleText("Unchecked");
+        item.setAccessibleText(UNCHECKED);
         return item;
     }
 
@@ -86,10 +86,10 @@ public class ChecklistController {
             ObservableList<String> nameLabel_Stylesheets = nameLabel.getStylesheets();
             if (newValue) {
                 nameLabel_Stylesheets.add(strikethroughStyle);
-                item.setAccessibleText("Checked");
+                item.setAccessibleText(CHECKED);
             } else {
                 nameLabel_Stylesheets.remove(strikethroughStyle);
-                item.setAccessibleText("Unchecked");
+                item.setAccessibleText(UNCHECKED);
             }
         });
         return checkBox;
@@ -102,6 +102,6 @@ public class ChecklistController {
 
     @FXML
     protected void onClearButtonClick() {
-        checklist_Group.getChildren().removeIf(item -> item.getAccessibleText().equals("Checked"));
+        checklist_Group.getChildren().removeIf(item -> item.getAccessibleText().equals(CHECKED));
     }
 }
