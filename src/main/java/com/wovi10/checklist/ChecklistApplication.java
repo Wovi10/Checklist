@@ -11,7 +11,7 @@ public class ChecklistApplication extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(ChecklistApplication.class.getResource(FXML_FILE));
-        Scene scene = new Scene(fxmlLoader.load(), PROGRAM_HEIGHT, PROGRAM_WIDTH);
+        Scene scene = new Scene(fxmlLoader.load(), PROGRAM_WIDTH, PROGRAM_HEIGHT);
         stage.setTitle(TITLE);
         stage.setScene(scene);
         stage.show();

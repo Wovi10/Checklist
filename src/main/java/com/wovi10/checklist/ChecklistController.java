@@ -3,8 +3,8 @@ package com.wovi10.checklist;
 import com.wovi10.checklist.utils.Checklist;
 import com.wovi10.checklist.utils.ChecklistItem;
 import com.wovi10.checklist.utils.ChecklistPopup;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
@@ -22,7 +22,6 @@ public class ChecklistController {
     public Pane spacer;
 
     //region 1 Add button
-
     /**
      * 1
      * When clicking the add button:
@@ -35,9 +34,9 @@ public class ChecklistController {
         String itemName = requestItemName();
         ChecklistItem item = createItem(itemName);
         checklist.addItem(item);
-        boolean checklistIsInitialised = program.getChildren().contains(checklist.getChecklist());
+        boolean checklistIsInitialised = program.getChildren().contains(checklist.getVisibleChecklist());
         if (!checklistIsInitialised){
-            program.getChildren().add(checklist.getChecklist());
+            program.getChildren().add(checklist.getVisibleChecklist());
         }
     }
 
@@ -95,6 +94,10 @@ public class ChecklistController {
     @FXML
     protected void onClearButtonClick() {
         checklist.clearCompleted();
+    }
+
+    public void onSaveButtonClick(ActionEvent actionEvent) {
+        checklist.saveItems();
     }
     //endregion
 }

@@ -17,7 +17,8 @@
             <HBox spacing="10">
                 <Button text="Add" onAction="#onAddButtonClick" alignment="TOP_LEFT"/>
                 <Button text="Clear completed" onAction="#onClearButtonClick" alignment="TOP_LEFT"/>
-                <Pane fx:id="spacer" prefWidth="10" prefHeight="10" HBox.hgrow="ALWAYS"/>
+                <Pane fx:id="spacer" prefWidth="100" prefHeight="10" HBox.hgrow="ALWAYS"/>
+                <Button text="Save" onAction="#onSaveButtonClick" alignment="TOP_RIGHT"/>
                 <Button text="Clear all" onAction="#onClearAllButtonClick" alignment="TOP_RIGHT"/>
             </HBox>
         </VBox>

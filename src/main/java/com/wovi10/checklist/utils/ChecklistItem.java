@@ -25,20 +25,34 @@ import static com.wovi10.checklist.Constants.ChecklistConstants.*;
 public class ChecklistItem {
     private final VBox parent;
     private final String strikethroughStyle = String.valueOf(ChecklistController.class.getResource(STRIKETHROUGH_FILE));
-    public HBox item;
+    private HBox item;
+    private Label nameLabel;
+    private boolean isChecked;
 
     public ChecklistItem(String name, Checklist parent) {
-        item = new HBox();
-        Label nameLabel = new Label(name);
+        this.item = new HBox();
+        this.nameLabel = new Label(name);
         CheckBox checkBox = create_CheckBox(nameLabel);
-        this.parent = parent.getChecklist();
+        this.parent = parent.getVisibleChecklist();
         Button deleteButton = create_deleteButton(item);
+        isChecked = false;
 
         Pane spacer = new Pane();
         HBox.setHgrow(spacer, Priority.ALWAYS);
         item.getChildren().addAll(checkBox, nameLabel, spacer, deleteButton);
-        item.setAccessibleText(UNCHECKED);
     }
+
+    //region Getters and Setters
+    public HBox getItem() {
+        return item;
+    }
+    public Label getNameLabel() {
+        return nameLabel;
+    }
+    public boolean getChecked() {
+        return isChecked;
+    }
+    //endregion
 
     /**
      * Create delete button for specific checklist item.
@@ -53,7 +67,6 @@ public class ChecklistItem {
         button.setAlignment(Pos.CENTER_RIGHT);
         return button;
     }
-    //endregion
 
     /**
      * Create checkBox for completion.
@@ -80,16 +93,6 @@ public class ChecklistItem {
      * Change the state of an item.
      */
     private void changeState() {
-        boolean itemIsChecked = item.getAccessibleText().equals(CHECKED);
-        if (!itemIsChecked) {
-            item.setAccessibleText(CHECKED);
-        } else {
-            item.setAccessibleText(UNCHECKED);
-        }
-    }
-
-    //region Getters and Setters
-    public HBox getItem() {
-        return item;
+        isChecked = !isChecked;
     }
 }
