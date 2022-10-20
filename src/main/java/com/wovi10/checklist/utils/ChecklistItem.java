@@ -15,10 +15,17 @@ import javafx.scene.layout.VBox;
 
 import static com.wovi10.checklist.Constants.ChecklistConstants.*;
 
+/**
+ * ChecklistItem
+ * This class adds all utils for a checklist item.
+ * You can create an item, delete it or mark it as completed.
+ *
+ * @author - Wout Vinckevleugel (Wovi10)
+ */
 public class ChecklistItem {
-    public HBox item;
     private final VBox parent;
     private final String strikethroughStyle = String.valueOf(ChecklistController.class.getResource(STRIKETHROUGH_FILE));
+    public HBox item;
 
     public ChecklistItem(String name, Checklist parent) {
         item = new HBox();
@@ -33,12 +40,6 @@ public class ChecklistItem {
         item.setAccessibleText(UNCHECKED);
     }
 
-    //region Getters and Setters
-    public HBox getItem() {
-        return item;
-    }
-    //endregion
-
     /**
      * Create delete button for specific checklist item.
      *
@@ -52,6 +53,7 @@ public class ChecklistItem {
         button.setAlignment(Pos.CENTER_RIGHT);
         return button;
     }
+    //endregion
 
     /**
      * Create checkBox for completion.
@@ -77,12 +79,17 @@ public class ChecklistItem {
     /**
      * Change the state of an item.
      */
-    protected void changeState() {
+    private void changeState() {
         boolean itemIsChecked = item.getAccessibleText().equals(CHECKED);
         if (!itemIsChecked) {
             item.setAccessibleText(CHECKED);
         } else {
             item.setAccessibleText(UNCHECKED);
         }
+    }
+
+    //region Getters and Setters
+    public HBox getItem() {
+        return item;
     }
 }
