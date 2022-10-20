@@ -35,9 +35,10 @@ public class ChecklistController {
     private String itemToAdd;
 
     /**
+     * 1
      * When clicking the add button:
-     *         a popup shows to request the name of the checklist item.
-     *         a checklist item gets made.
+     *         Show popup to request the name of the checklist item.
+     *         Create checklist item
      *         the item gets added to the form.
      */
     @FXML
@@ -47,6 +48,11 @@ public class ChecklistController {
         checklist_Group.getChildren().add(checklistItem);
     }
 
+    /**
+     * 1.1
+     * Show popup to request the name of the checklist item.
+     * @return Name of the item to add in String format
+     */
     private String requestItemName() {
         Stage popup = new Stage();
         Label questionLabel = new Label(POPUP_QUESTION);
@@ -62,12 +68,24 @@ public class ChecklistController {
         return itemToAdd;
     }
 
+    /**
+     * 1.1.1
+     * Read the name of the item to add and set it for later use.
+     * @param answerLabel TextField in which the answer is put.
+     * @param popup The popup so it can be closed after setting the answer.
+     */
     private void giveAnswer(TextField answerLabel, Stage popup) {
         itemToAdd = answerLabel.getText();
         popup.close();
 
     }
 
+    /**
+     * 1.2
+     * Create checklist item.
+     * @param itemName The name of the item to add.
+     * @return The created checklist item.
+     */
     private HBox createItem(String itemName) {
         HBox item = new HBox();
 
@@ -81,6 +99,12 @@ public class ChecklistController {
         return item;
     }
 
+    /**
+     * 1.2.1
+     * Create delete button for specific checklist item.
+     * @param item The item to be deleted on button press.
+     * @return The created button.
+     */
     private Button create_DeleteButton(HBox item) {
         Button button = new Button(DELETE_TEXT);
         EventHandler<MouseEvent> eventHandler = mouseEvent -> checklist_Group.getChildren().remove(item);
@@ -89,6 +113,13 @@ public class ChecklistController {
         return button;
     }
 
+    /**
+     * 1.2.2
+     * Create checkBox for completion.
+     * @param nameLabel The name to strikethrough.
+     * @param item The item to change 'checked state'.
+     * @return The created checkBox.
+     */
     private CheckBox create_CheckBox(Label nameLabel, HBox item) {
         CheckBox checkBox = new CheckBox();
 
@@ -105,11 +136,19 @@ public class ChecklistController {
         return checkBox;
     }
 
+    /**
+     * 2.0
+     * Delete all checklist items on button press.
+     */
     @FXML
     protected void onClearAllButtonClick() {
         checklist_Group.getChildren().clear();
     }
 
+    /**
+     * 3.0
+     * Delete on completed items on button press.
+     */
     @FXML
     protected void onClearButtonClick() {
         checklist_Group.getChildren().removeIf(checklist_item -> checklist_item.getAccessibleText().equals(CHECKED));
