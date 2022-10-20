@@ -4,12 +4,14 @@ import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.layout.VBox;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.wovi10.checklist.Constants.ChecklistConstants.CHECKED;
+import static com.wovi10.checklist.Constants.ChecklistConstants.SAVING_URL;
 
 /**
  * Checklist
@@ -73,7 +75,13 @@ public class Checklist {
     }
 
     public void saveItems() throws IOException {
-        FileWriter writer = new FileWriter("output.txt");
+        File yourFile = new File(SAVING_URL);
+        boolean fileNotExisted = yourFile.createNewFile(); // if file already exists will do nothing
+        if (fileNotExisted){
+            System.out.printf("File created at: $s%n",SAVING_URL);
+        }
+
+        FileWriter writer = new FileWriter(SAVING_URL);
         for (ChecklistItem checklistItem : checklistItems) {
             writer.write(checklistItem.getNameLabel() + System.lineSeparator());
         }

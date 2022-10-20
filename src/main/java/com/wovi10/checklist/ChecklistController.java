@@ -8,6 +8,8 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
+import java.io.IOException;
+
 /**
  * ChecklistController
  * This class shows what happens when interacting with the checklist form.
@@ -96,7 +98,7 @@ public class ChecklistController {
         checklist.clearCompleted();
     }
 
-    public void onSaveButtonClick(ActionEvent actionEvent) {
+    public void onSaveButtonClick(ActionEvent actionEvent) throws IOException {
         checklist.saveItems();
     }
     //endregion
