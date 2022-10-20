@@ -15,25 +15,28 @@ import javafx.scene.layout.VBox;
 import static com.wovi10.checklist.ChecklistConstants.*;
 
 public class ChecklistItem {
-    public HBox getItem() {
-        return item;
-    }
-
-    public HBox item = new HBox();
-    private static final Pane spacer = new Pane();
+    public HBox item;
     private final VBox parent;
     private final String strikethroughStyle = String.valueOf(ChecklistController.class.getResource(STRIKETHROUGH_FILE));
 
-    public ChecklistItem(String name, VBox parent) {
+    protected ChecklistItem(String name, VBox parent) {
+        item = new HBox();
         Label nameLabel = new Label(name);
         CheckBox checkBox = create_CheckBox(nameLabel);
-        Button deleteButton = create_deleteButton(item);
         this.parent = parent;
+        Button deleteButton = create_deleteButton(item);
 
+        Pane spacer = new Pane();
         HBox.setHgrow(spacer, Priority.ALWAYS);
         item.getChildren().addAll(checkBox, nameLabel, spacer, deleteButton);
         item.setAccessibleText(UNCHECKED);
     }
+
+    //region Getters and Setters
+    protected HBox getItem() {
+        return item;
+    }
+    //endregion
 
     /**
      * Create delete button for specific checklist item.
