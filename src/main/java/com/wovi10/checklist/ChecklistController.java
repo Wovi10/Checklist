@@ -37,9 +37,9 @@ public class ChecklistController {
     /**
      * 1
      * When clicking the add button:
-     *         Show popup to request the name of the checklist item.
-     *         Create checklist item
-     *         the item gets added to the form.
+     * Show popup to request the name of the checklist item.
+     * Create checklist item
+     * the item gets added to the form.
      */
     @FXML
     protected void onAddButtonClick() {
@@ -51,6 +51,7 @@ public class ChecklistController {
     /**
      * 1.1
      * Show popup to request the name of the checklist item.
+     *
      * @return Name of the item to add in String format
      */
     private String requestItemName() {
@@ -71,8 +72,9 @@ public class ChecklistController {
     /**
      * 1.1.1
      * Read the name of the item to add and set it for later use.
+     *
      * @param answerLabel TextField in which the answer is put.
-     * @param popup The popup so it can be closed after setting the answer.
+     * @param popup       The popup so it can be closed after setting the answer.
      */
     private void giveAnswer(TextField answerLabel, Stage popup) {
         itemToAdd = answerLabel.getText();
@@ -83,6 +85,7 @@ public class ChecklistController {
     /**
      * 1.2
      * Create checklist item.
+     *
      * @param itemName The name of the item to add.
      * @return The created checklist item.
      */
@@ -95,13 +98,14 @@ public class ChecklistController {
         CheckBox checkBox = create_CheckBox(nameLabel, item);
         Button deleteButton = create_DeleteButton(item);
         item.getChildren().addAll(checkBox, nameLabel, item_spacer, deleteButton);
-        item.setAccessibleText(UNCHECKED);
+        changeState(item);
         return item;
     }
 
     /**
      * 1.2.1
      * Create delete button for specific checklist item.
+     *
      * @param item The item to be deleted on button press.
      * @return The created button.
      */
@@ -116,8 +120,9 @@ public class ChecklistController {
     /**
      * 1.2.2
      * Create checkBox for completion.
+     *
      * @param nameLabel The name to strikethrough.
-     * @param item The item to change 'checked state'.
+     * @param item      The item to change 'checked state'.
      * @return The created checkBox.
      */
     private CheckBox create_CheckBox(Label nameLabel, HBox item) {
@@ -127,13 +132,20 @@ public class ChecklistController {
             ObservableList<String> nameLabel_Stylesheets = nameLabel.getStylesheets();
             if (newValue) {
                 nameLabel_Stylesheets.add(strikethroughStyle);
-                item.setAccessibleText(CHECKED);
             } else {
                 nameLabel_Stylesheets.remove(strikethroughStyle);
-                item.setAccessibleText(UNCHECKED);
             }
+            changeState(item);
         });
         return checkBox;
+    }
+
+    private void changeState(HBox item) {
+        if (item.getAccessibleText().equals(UNCHECKED)) {
+            item.setAccessibleText(CHECKED);
+        } else {
+            item.setAccessibleText(UNCHECKED);
+        }
     }
 
     /**
