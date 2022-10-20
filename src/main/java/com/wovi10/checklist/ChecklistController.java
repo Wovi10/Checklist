@@ -34,6 +34,7 @@ public class ChecklistController {
     public Pane spacer;
     private String itemToAdd;
 
+    //region 1 Add button
     /**
      * 1
      * When clicking the add button:
@@ -48,6 +49,7 @@ public class ChecklistController {
         checklist_Group.getChildren().add(checklistItem);
     }
 
+    //region 1.1 requestItemName
     /**
      * 1.1
      * Show popup to request the name of the checklist item.
@@ -81,7 +83,9 @@ public class ChecklistController {
         popup.close();
 
     }
+    //endregion
 
+    //region 1.2 createItem
     /**
      * 1.2
      * Create checklist item.
@@ -91,34 +95,18 @@ public class ChecklistController {
      */
     private HBox createItem(String itemName) {
         HBox item = new HBox();
-
         Pane item_spacer = new Pane();
         HBox.setHgrow(item_spacer, Priority.ALWAYS);
         Label nameLabel = new Label(itemName);
         CheckBox checkBox = create_CheckBox(nameLabel, item);
         Button deleteButton = create_DeleteButton(item);
         item.getChildren().addAll(checkBox, nameLabel, item_spacer, deleteButton);
-        changeState(item);
+        changeItemState(item);
         return item;
     }
 
     /**
      * 1.2.1
-     * Create delete button for specific checklist item.
-     *
-     * @param item The item to be deleted on button press.
-     * @return The created button.
-     */
-    private Button create_DeleteButton(HBox item) {
-        Button button = new Button(DELETE_TEXT);
-        EventHandler<MouseEvent> eventHandler = mouseEvent -> checklist_Group.getChildren().remove(item);
-        button.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
-        button.setAlignment(Pos.CENTER_RIGHT);
-        return button;
-    }
-
-    /**
-     * 1.2.2
      * Create checkBox for completion.
      *
      * @param nameLabel The name to strikethrough.
@@ -135,19 +123,29 @@ public class ChecklistController {
             } else {
                 nameLabel_Stylesheets.remove(strikethroughStyle);
             }
-            changeState(item);
+            changeItemState(item);
         });
         return checkBox;
     }
 
-    private void changeState(HBox item) {
-        if (item.getAccessibleText().equals(UNCHECKED)) {
-            item.setAccessibleText(CHECKED);
-        } else {
-            item.setAccessibleText(UNCHECKED);
-        }
+    /**
+     * 1.2.2
+     * Create delete button for specific checklist item.
+     *
+     * @param item The item to be deleted on button press.
+     * @return The created button.
+     */
+    private Button create_DeleteButton(HBox item) {
+        Button button = new Button(DELETE_TEXT);
+        EventHandler<MouseEvent> eventHandler = mouseEvent -> checklist_Group.getChildren().remove(item);
+        button.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
+        button.setAlignment(Pos.CENTER_RIGHT);
+        return button;
     }
+    //endregion
+    //endregion
 
+    //region 2 Clear all button
     /**
      * 2.0
      * Delete all checklist items on button press.
@@ -156,7 +154,9 @@ public class ChecklistController {
     protected void onClearAllButtonClick() {
         checklist_Group.getChildren().clear();
     }
+    //endregion
 
+    //region 3 Clear button
     /**
      * 3.0
      * Delete on completed items on button press.
@@ -164,5 +164,20 @@ public class ChecklistController {
     @FXML
     protected void onClearButtonClick() {
         checklist_Group.getChildren().removeIf(checklist_item -> checklist_item.getAccessibleText().equals(CHECKED));
+    }
+    //endregion
+
+    /**
+     * util
+     * Change the state of an item.
+     * @param item The item which has to be changed.
+     */
+    private void changeItemState(HBox item) {
+        boolean itemIsChecked = item.getAccessibleText().equals(CHECKED);
+        if (!itemIsChecked) {
+            item.setAccessibleText(CHECKED);
+        } else {
+            item.setAccessibleText(UNCHECKED);
+        }
     }
 }
