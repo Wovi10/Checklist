@@ -85,6 +85,7 @@ public class ChecklistController {
     }
     //endregion
 
+    //region 1.2 createItem
     /**
      * 1.2
      * Create checklist item.
@@ -96,6 +97,7 @@ public class ChecklistController {
         ChecklistItem item = new ChecklistItem(itemName, checklist_Group);
         return item.getItem();
     }
+    //endregion
     //endregion
 
     //region 2 Clear all button
@@ -119,18 +121,4 @@ public class ChecklistController {
         checklist_Group.getChildren().removeIf(checklist_item -> checklist_item.getAccessibleText().equals(CHECKED));
     }
     //endregion
-
-    /**
-     * util
-     * Change the state of an item.
-     * @param item The item which has to be changed.
-     */
-    private void changeItemState(HBox item) {
-        boolean itemIsChecked = item.getAccessibleText().equals(CHECKED);
-        if (!itemIsChecked) {
-            item.setAccessibleText(CHECKED);
-        } else {
-            item.setAccessibleText(UNCHECKED);
-        }
-    }
 }
