@@ -5,13 +5,13 @@ import javafx.scene.Node;
 import javafx.scene.layout.VBox;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
-import static com.wovi10.checklist.Constants.ChecklistConstants.SAVING_URL;
+import static com.wovi10.checklist.Constants.ChecklistConstants.SAVING_FILE_NAME;
 
 /**
  * Checklist
@@ -75,13 +75,16 @@ public class Checklist {
     }
 
     public void saveItems() throws IOException {
-        File yourFile = new File(SAVING_URL);
+        String fileLocation = SAVING_FILE_NAME;
+        File yourFile = new File(fileLocation);
         boolean fileNotExisted = yourFile.createNewFile(); // if file already exists will do nothing
         if (fileNotExisted){
-            System.out.printf("File created at: $s%n",SAVING_URL);
+            System.out.printf("File created at: %s",fileLocation);
+        }else {
+            System.out.printf("Writing to: %s",fileLocation);
         }
 
-        FileWriter writer = new FileWriter(SAVING_URL);
+        FileWriter writer = new FileWriter(fileLocation);
         for (ChecklistItem checklistItem : checklistItems) {
             writer.write(checklistItem.getNameLabel() + System.lineSeparator());
         }

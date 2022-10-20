@@ -46,8 +46,8 @@ public class ChecklistItem {
     public HBox getItem() {
         return item;
     }
-    public Label getNameLabel() {
-        return nameLabel;
+    public String getNameLabel() {
+        return nameLabel.getText();
     }
     public boolean getChecked() {
         return isChecked;
