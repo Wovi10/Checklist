@@ -12,7 +12,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
-import static com.wovi10.checklist.ChecklistConstants.*;
+import static com.wovi10.checklist.Constants.ChecklistConstants.*;
 
 public class ChecklistItem {
     public HBox item;

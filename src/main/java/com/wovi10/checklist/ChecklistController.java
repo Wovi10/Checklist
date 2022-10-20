@@ -1,22 +1,16 @@
 package com.wovi10.checklist;
 
-import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import static com.wovi10.checklist.ChecklistConstants.*;
+import static com.wovi10.checklist.Constants.ChecklistConstants.*;
 
 /**
  * ChecklistController
@@ -57,18 +51,8 @@ public class ChecklistController {
      * @return Name of the item to add in String format
      */
     private String requestItemName() {
-        Stage popup = new Stage();
-        Label questionLabel = new Label(POPUP_QUESTION);
-        TextField answerField = new TextField();
-        Button answerButton = new Button(ADD_TEXT);
-        VBox popupContent = new VBox();
-
-        popupContent.getChildren().addAll(questionLabel, answerField, answerButton);
-        answerButton.setOnAction(e -> giveAnswer(answerField, popup));
-        Scene popupScene = new Scene(popupContent, POPUP_HEIGHT, POPUP_WIDTH);
-        popup.setScene(popupScene);
-        popup.showAndWait();
-        return itemToAdd;
+        ChecklistPopup popup = new ChecklistPopup();
+        return popup.getItemToAdd();
     }
 
     /**
