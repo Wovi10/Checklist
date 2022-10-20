@@ -1,7 +1,6 @@
 package com.wovi10.checklist;
 
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
@@ -61,12 +60,14 @@ public class ChecklistController {
 
     private HBox createItem(String itemName) {
         HBox item = new HBox();
+
         Pane item_spacer = new Pane();
         HBox.setHgrow(item_spacer, Priority.ALWAYS);
         Label nameLabel = new Label(itemName);
-        CheckBox checkBox = create_CheckBox(nameLabel);
+        CheckBox checkBox = create_CheckBox(nameLabel, item);
         Button deleteButton = create_DeleteButton(item);
         item.getChildren().addAll(checkBox, nameLabel, item_spacer, deleteButton);
+        item.setAccessibleText("Unchecked");
         return item;
     }
 
@@ -78,15 +79,17 @@ public class ChecklistController {
         return button;
     }
 
-    private CheckBox create_CheckBox(Label nameLabel) {
+    private CheckBox create_CheckBox(Label nameLabel, HBox item) {
         CheckBox checkBox = new CheckBox();
 
         checkBox.selectedProperty().addListener((observableValue, oldValue, newValue) -> {
             ObservableList<String> nameLabel_Stylesheets = nameLabel.getStylesheets();
             if (newValue) {
                 nameLabel_Stylesheets.add(strikethroughStyle);
+                item.setAccessibleText("Checked");
             } else {
                 nameLabel_Stylesheets.remove(strikethroughStyle);
+                item.setAccessibleText("Unchecked");
             }
         });
         return checkBox;
@@ -99,8 +102,6 @@ public class ChecklistController {
 
     @FXML
     protected void onClearButtonClick() {
-        for (int i = 0; i < checklist_Group.getChildren().size(); i++) {
-            System.out.println(checklist_Group.getChildren().get(i).hasProperties());
-        }
+        checklist_Group.getChildren().removeIf(item -> item.getAccessibleText().equals("Checked"));
     }
 }
