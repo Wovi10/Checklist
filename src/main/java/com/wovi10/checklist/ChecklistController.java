@@ -58,12 +58,11 @@ public class ChecklistController {
 
     private HBox createItem(String itemName) {
         HBox item = new HBox();
+        Pane item_spacer = new Pane();
+        HBox.setHgrow(item_spacer, Priority.ALWAYS);
         Label nameLabel = createNameLabel(itemName);
         CheckBox checkBox = create_CheckBox(nameLabel);
         Button deleteButton = create_DeleteButton(item);
-        deleteButton.setAlignment(Pos.CENTER_RIGHT);
-        Pane item_spacer = new Pane();
-        HBox.setHgrow(item_spacer, Priority.ALWAYS);
         item.getChildren().addAll(checkBox, nameLabel, item_spacer, deleteButton);
         return item;
     }
@@ -73,6 +72,7 @@ public class ChecklistController {
         button.setText(DELETE_TEXT);
         EventHandler<MouseEvent> eventHandler = mouseEvent -> checklist_Group.getChildren().remove(item);
         button.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
+        button.setAlignment(Pos.CENTER_RIGHT);
         return button;
     }
 
@@ -87,7 +87,7 @@ public class ChecklistController {
         checkBox.selectedProperty().addListener((observableValue, oldValue, newValue) -> {
             if (newValue) {
                 nameLabel.getStylesheets().add(strikethroughStyle);
-            }else{
+            } else {
                 nameLabel.getStylesheets().remove(strikethroughStyle);
             }
         });
