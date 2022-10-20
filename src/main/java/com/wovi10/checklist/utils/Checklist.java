@@ -1,5 +1,6 @@
 package com.wovi10.checklist.utils;
 
+import com.wovi10.checklist.ChecklistController;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.layout.VBox;
@@ -9,8 +10,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.wovi10.checklist.Constants.ChecklistConstants.SAVING_FILE_NAME;
+import java.util.Objects;
 
 /**
  * Checklist
@@ -75,7 +75,7 @@ public class Checklist {
     }
 
     public void saveItems() throws IOException {
-        String fileLocation = SAVING_FILE_NAME;
+        String fileLocation = String.valueOf(Objects.requireNonNull(ChecklistController.class.getResource("savedChecklist.txt")).getPath());
         File yourFile = new File(fileLocation);
         boolean fileNotExisted = yourFile.createNewFile();
         if (fileNotExisted) {
