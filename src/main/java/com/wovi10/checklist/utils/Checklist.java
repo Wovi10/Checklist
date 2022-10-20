@@ -48,16 +48,4 @@ public class Checklist {
     public void clearCompleted() {
         checklist.getChildren().removeIf(item -> item.getAccessibleText().equals(CHECKED));
     }
-
-    public void addTestingItems() {
-        String itemName = "TestItem";
-        ChecklistItem item1 = new ChecklistItem(itemName, this);
-        this.addItem(item1);
-        ChecklistItem item2 = new ChecklistItem(itemName, this);
-        this.addItem(item2);
-        ChecklistItem item3 = new ChecklistItem(itemName, this);
-        this.addItem(item3);
-        ChecklistItem item4 = new ChecklistItem(itemName, this);
-        this.addItem(item4);
-    }
 }

@@ -5,19 +5,20 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
-<VBox fx:id="program"
+<?import javafx.scene.control.ScrollPane?>
+<ScrollPane
       xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.wovi10.checklist.ChecklistController"
-      spacing="10">
+      fx:controller="com.wovi10.checklist.ChecklistController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
     </padding>
-
-    <HBox spacing="10">
-        <Button text="Add" onAction="#onAddButtonClick" alignment="TOP_LEFT"/>
-        <Button text="Clear completed" onAction="#onClearButtonClick" alignment="TOP_LEFT"/>
-        <Pane fx:id="spacer" prefWidth="10" prefHeight="10" HBox.hgrow="ALWAYS"/>
-        <Button text="Clear all" onAction="#onClearAllButtonClick" alignment="TOP_RIGHT"/>
-    </HBox>
-</VBox>
+        <VBox fx:id="program">
+            <HBox spacing="10">
+                <Button text="Add" onAction="#onAddButtonClick" alignment="TOP_LEFT"/>
+                <Button text="Clear completed" onAction="#onClearButtonClick" alignment="TOP_LEFT"/>
+                <Pane fx:id="spacer" prefWidth="10" prefHeight="10" HBox.hgrow="ALWAYS"/>
+                <Button text="Clear all" onAction="#onClearAllButtonClick" alignment="TOP_RIGHT"/>
+            </HBox>
+        </VBox>
+</ScrollPane>

@@ -4,6 +4,7 @@ import com.wovi10.checklist.utils.Checklist;
 import com.wovi10.checklist.utils.ChecklistItem;
 import com.wovi10.checklist.utils.ChecklistPopup;
 import javafx.fxml.FXML;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
@@ -34,7 +35,6 @@ public class ChecklistController {
         String itemName = requestItemName();
         ChecklistItem item = createItem(itemName);
         checklist.addItem(item);
-        checklist.addTestingItems();
         boolean checklistIsInitialised = program.getChildren().contains(checklist.getChecklist());
         if (!checklistIsInitialised){
             program.getChildren().add(checklist.getChecklist());
