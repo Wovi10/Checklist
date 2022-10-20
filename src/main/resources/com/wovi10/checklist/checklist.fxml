@@ -9,19 +9,16 @@
       xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.wovi10.checklist.ChecklistController"
-      prefHeight="400.0" prefWidth="600.0" spacing="10">
+      prefHeight="1000.0" prefWidth="600.0" spacing="10">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
     </padding>
 
     <HBox>
-        <padding>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-        </padding>
         <Button text="Add" onAction="#onAddButtonClick" alignment="TOP_LEFT" />
-        <Pane fx:id="spacer" prefWidth="10" prefHeight="10" />
+        <Pane fx:id="spacer" prefWidth="10" prefHeight="10" HBox.hgrow="ALWAYS" />
         <Button text="Clear" onAction="#onClearButtonClick" alignment="TOP_RIGHT" />
     </HBox>
-    <VBox fx:id="checklist_Group" spacing="10">
+    <VBox fx:id="checklist_Group" spacing="10" VBox.vgrow="ALWAYS">
     </VBox>
 </VBox>
