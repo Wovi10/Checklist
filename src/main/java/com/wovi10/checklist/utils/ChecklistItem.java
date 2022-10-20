@@ -25,8 +25,8 @@ import static com.wovi10.checklist.Constants.ChecklistConstants.*;
 public class ChecklistItem {
     private final VBox parent;
     private final String strikethroughStyle = String.valueOf(ChecklistController.class.getResource(STRIKETHROUGH_FILE));
-    private HBox item;
-    private Label nameLabel;
+    private final HBox item;
+    private final Label nameLabel;
     private boolean isChecked;
 
     public ChecklistItem(String name, Checklist parent) {
