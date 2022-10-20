@@ -34,6 +34,7 @@ public class ChecklistController {
         String itemName = requestItemName();
         ChecklistItem item = createItem(itemName);
         checklist.addItem(item);
+        checklist.addTestingItems();
         boolean checklistIsInitialised = program.getChildren().contains(checklist.getChecklist());
         if (!checklistIsInitialised){
             program.getChildren().add(checklist.getChecklist());
