@@ -45,8 +45,8 @@ public class ChecklistController {
     @FXML
     protected void onAddButtonClick() {
         String itemName = requestItemName();
-        HBox checklistItem = createItem(itemName);
-        checklist_Group.getChildren().add(checklistItem);
+        HBox item = createItem(itemName);
+        checklist_Group.getChildren().add(item);
     }
 
     //region 1.1 requestItemName
@@ -94,53 +94,9 @@ public class ChecklistController {
      * @return The created checklist item.
      */
     private HBox createItem(String itemName) {
-        HBox item = new HBox();
-        Pane item_spacer = new Pane();
-        HBox.setHgrow(item_spacer, Priority.ALWAYS);
-        Label nameLabel = new Label(itemName);
-        CheckBox checkBox = create_CheckBox(nameLabel, item);
-        Button deleteButton = create_DeleteButton(item);
-        item.getChildren().addAll(checkBox, nameLabel, item_spacer, deleteButton);
-        changeItemState(item);
-        return item;
-    }
-
-    /**
-     * 1.2.1
-     * Create checkBox for completion.
-     *
-     * @param nameLabel The name to strikethrough.
-     * @param item      The item to change 'checked state'.
-     * @return The created checkBox.
-     */
-    private CheckBox create_CheckBox(Label nameLabel, HBox item) {
-        CheckBox checkBox = new CheckBox();
-
-        checkBox.selectedProperty().addListener((observableValue, oldValue, newValue) -> {
-            ObservableList<String> nameLabel_Stylesheets = nameLabel.getStylesheets();
-            if (newValue) {
-                nameLabel_Stylesheets.add(strikethroughStyle);
-            } else {
-                nameLabel_Stylesheets.remove(strikethroughStyle);
-            }
-            changeItemState(item);
-        });
-        return checkBox;
-    }
-
-    /**
-     * 1.2.2
-     * Create delete button for specific checklist item.
-     *
-     * @param item The item to be deleted on button press.
-     * @return The created button.
-     */
-    private Button create_DeleteButton(HBox item) {
-        Button button = new Button(DELETE_TEXT);
-        EventHandler<MouseEvent> eventHandler = mouseEvent -> checklist_Group.getChildren().remove(item);
-        button.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
-        button.setAlignment(Pos.CENTER_RIGHT);
-        return button;
+        ChecklistItem item = new ChecklistItem(itemName, checklist_Group);
+        item.changeState();
+        return item.getItem();
     }
     //endregion
     //endregion
