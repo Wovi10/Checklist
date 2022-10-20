@@ -1,4 +1,4 @@
-package com.wovi10.checklist;
+package com.wovi10.checklist.utils;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -12,22 +12,21 @@ import static com.wovi10.checklist.Constants.PopupConstants.*;
 
 public class ChecklistPopup {
     public Stage popupBox;
-    private VBox popupContent;
-    private Scene scene;
-
-    public String getItemToAdd() {
-        return itemToAdd;
-    }
-
     private String itemToAdd;
 
     public ChecklistPopup() {
         popupBox = new Stage();
-        this.popupContent = create_popupContent();
-        this.scene = new Scene(popupContent, POPUP_HEIGHT, POPUP_WIDTH);
+        VBox popupContent = create_popupContent();
+        Scene scene = new Scene(popupContent, POPUP_HEIGHT, POPUP_WIDTH);
         popupBox.setScene(scene);
         popupBox.showAndWait();
     }
+
+    //region Getters and Setters
+    public String getItemToAdd() {
+        return itemToAdd;
+    }
+    //endregion
 
     private VBox create_popupContent() {
         Label questionLabel = new Label(POPUP_QUESTION);

@@ -1,5 +1,6 @@
-package com.wovi10.checklist;
+package com.wovi10.checklist.utils;
 
+import com.wovi10.checklist.ChecklistController;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -19,7 +20,7 @@ public class ChecklistItem {
     private final VBox parent;
     private final String strikethroughStyle = String.valueOf(ChecklistController.class.getResource(STRIKETHROUGH_FILE));
 
-    protected ChecklistItem(String name, VBox parent) {
+    public ChecklistItem(String name, VBox parent) {
         item = new HBox();
         Label nameLabel = new Label(name);
         CheckBox checkBox = create_CheckBox(nameLabel);
@@ -33,7 +34,7 @@ public class ChecklistItem {
     }
 
     //region Getters and Setters
-    protected HBox getItem() {
+    public HBox getItem() {
         return item;
     }
     //endregion

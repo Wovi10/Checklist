@@ -1,16 +1,13 @@
 package com.wovi10.checklist;
 
+import com.wovi10.checklist.utils.ChecklistItem;
+import com.wovi10.checklist.utils.ChecklistPopup;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
-import static com.wovi10.checklist.Constants.ChecklistConstants.*;
+import static com.wovi10.checklist.Constants.ChecklistConstants.CHECKED;
 
 /**
  * ChecklistController
@@ -19,14 +16,12 @@ import static com.wovi10.checklist.Constants.ChecklistConstants.*;
  * @author - Wout Vinckevleugel (Wovi10)
  */
 public class ChecklistController {
-    private final String strikethroughStyle = String.valueOf(ChecklistController.class.getResource(STRIKETHROUGH_FILE));
     @FXML
     public VBox vBox;
     @FXML
     public VBox checklist_Group;
     @FXML
     public Pane spacer;
-    private String itemToAdd;
 
     //region 1 Add button
     /**
@@ -53,19 +48,6 @@ public class ChecklistController {
     private String requestItemName() {
         ChecklistPopup popup = new ChecklistPopup();
         return popup.getItemToAdd();
-    }
-
-    /**
-     * 1.1.1
-     * Read the name of the item to add and set it for later use.
-     *
-     * @param answerLabel TextField in which the answer is put.
-     * @param popup       The popup so it can be closed after setting the answer.
-     */
-    private void giveAnswer(TextField answerLabel, Stage popup) {
-        itemToAdd = answerLabel.getText();
-        popup.close();
-
     }
     //endregion
 

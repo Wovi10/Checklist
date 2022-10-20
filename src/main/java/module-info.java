@@ -7,4 +7,6 @@ module com.wovi10.checklist {
     exports com.wovi10.checklist;
     exports com.wovi10.checklist.Constants;
     opens com.wovi10.checklist.Constants to javafx.fxml;
+    exports com.wovi10.checklist.utils;
+    opens com.wovi10.checklist.utils to javafx.fxml;
 }
