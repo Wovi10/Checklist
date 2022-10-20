@@ -9,7 +9,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import static com.wovi10.checklist.Constants.ChecklistConstants.SAVING_FILE_NAME;
 
@@ -22,8 +21,8 @@ import static com.wovi10.checklist.Constants.ChecklistConstants.SAVING_FILE_NAME
  */
 public class Checklist {
 
-    private List<ChecklistItem> checklistItems = new ArrayList<>();
     private final VBox visibleChecklist;
+    private List<ChecklistItem> checklistItems = new ArrayList<>();
 
     public Checklist() {
         this.visibleChecklist = new VBox();
@@ -42,10 +41,11 @@ public class Checklist {
 
     /**
      * If item is valid, add it to checklist.
+     *
      * @param item Item to add.
      */
     public void addItem(ChecklistItem item) {
-        if (item != null){
+        if (item != null) {
             visibleChecklist.getChildren().add(item.getItem());
             checklistItems.add(item);
         }
@@ -66,9 +66,9 @@ public class Checklist {
         visibleChecklist.clear();
         for (ChecklistItem checklistItem : checklistItems) {
             boolean isCompleted = checklistItem.getChecked();
-            if (isCompleted){
+            if (isCompleted) {
                 checklistItems.remove(checklistItem);
-            }else {
+            } else {
                 visibleChecklist.add(checklistItem.getItem());
             }
         }
@@ -77,11 +77,11 @@ public class Checklist {
     public void saveItems() throws IOException {
         String fileLocation = SAVING_FILE_NAME;
         File yourFile = new File(fileLocation);
-        boolean fileNotExisted = yourFile.createNewFile(); // if file already exists will do nothing
-        if (fileNotExisted){
-            System.out.printf("File created at: %s",fileLocation);
-        }else {
-            System.out.printf("Writing to: %s",fileLocation);
+        boolean fileNotExisted = yourFile.createNewFile();
+        if (fileNotExisted) {
+            System.out.printf("File created at: %s", fileLocation);
+        } else {
+            System.out.printf("Writing to: %s", fileLocation);
         }
 
         FileWriter writer = new FileWriter(fileLocation);

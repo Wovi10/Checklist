@@ -24,6 +24,7 @@ public class ChecklistController {
     public Pane spacer;
 
     //region 1 Add button
+
     /**
      * 1
      * When clicking the add button:
@@ -37,7 +38,7 @@ public class ChecklistController {
         ChecklistItem item = createItem(itemName);
         checklist.addItem(item);
         boolean checklistIsInitialised = program.getChildren().contains(checklist.getVisibleChecklist());
-        if (!checklistIsInitialised){
+        if (!checklistIsInitialised) {
             program.getChildren().add(checklist.getVisibleChecklist());
         }
     }
