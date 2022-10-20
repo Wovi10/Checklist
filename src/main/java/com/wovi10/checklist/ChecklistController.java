@@ -85,7 +85,6 @@ public class ChecklistController {
     }
     //endregion
 
-    //region 1.2 createItem
     /**
      * 1.2
      * Create checklist item.
@@ -95,10 +94,8 @@ public class ChecklistController {
      */
     private HBox createItem(String itemName) {
         ChecklistItem item = new ChecklistItem(itemName, checklist_Group);
-        item.changeState();
         return item.getItem();
     }
-    //endregion
     //endregion
 
     //region 2 Clear all button
