@@ -1,9 +1,11 @@
 package com.wovi10.checklist;
 
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -91,7 +93,14 @@ public class ChecklistController {
     }
 
     @FXML
-    protected void onClearButtonClick() {
+    protected void onClearAllButtonClick() {
+        checklist_Group.getChildren().clear();
+    }
 
+    @FXML
+    protected void onClearButtonClick() {
+        for (int i = 0; i < checklist_Group.getChildren().size(); i++) {
+            System.out.println(checklist_Group.getChildren().get(i).hasProperties());
+        }
     }
 }
