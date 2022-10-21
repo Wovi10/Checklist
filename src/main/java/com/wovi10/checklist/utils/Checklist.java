@@ -5,12 +5,11 @@ import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.layout.VBox;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Scanner;
 
 /**
  * Checklist
@@ -89,5 +88,29 @@ public class Checklist {
             writer.write(checklistItem.getNameLabel() + System.lineSeparator());
         }
         writer.close();
+    }
+
+    public void loadItems() throws IOException {
+        String fileLocation = String.valueOf(Objects.requireNonNull(ChecklistController.class.getResource("savedChecklist.txt")).getPath());
+        File yourFile = new File(fileLocation);
+        boolean fileNotExisted = yourFile.createNewFile();
+        if (!fileNotExisted) {
+            System.out.printf("Reading from: %s \n", fileLocation);
+            try {
+                File myObj = new File(fileLocation);
+                Scanner myReader = new Scanner(myObj);
+                while (myReader.hasNextLine()) {
+                    String data = myReader.nextLine();
+                    System.out.println(data);
+                    ChecklistItem item = new ChecklistItem(data, this);
+                    addItem(item);
+                    System.out.println(visibleChecklist.getChildren());
+                }
+                myReader.close();
+            } catch (FileNotFoundException e) {
+                System.out.println("An error occurred.");
+                e.printStackTrace();
+            }
+        }
     }
 }

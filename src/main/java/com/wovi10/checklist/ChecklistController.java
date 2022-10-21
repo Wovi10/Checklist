@@ -23,6 +23,11 @@ public class ChecklistController {
     @FXML
     public Pane spacer;
 
+    public void initialize() throws IOException {
+        checklist.loadItems();
+        program.getChildren().add(checklist.getVisibleChecklist());
+    }
+
     //region 1 Add button
 
     /**
@@ -99,7 +104,7 @@ public class ChecklistController {
         checklist.clearCompleted();
     }
 
-    public void onSaveButtonClick(ActionEvent actionEvent) throws IOException {
+    public void onSaveButtonClick() throws IOException {
         checklist.saveItems();
     }
     //endregion
