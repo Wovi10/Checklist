@@ -64,7 +64,7 @@ public class Checklist {
         ObservableList<Node> visibleChecklist = this.visibleChecklist.getChildren();
         visibleChecklist.clear();
         for (ChecklistItem checklistItem : checklistItems) {
-            boolean isCompleted = checklistItem.getChecked();
+            boolean isCompleted = checklistItem.isChecked();
             if (isCompleted) {
                 checklistItems.remove(checklistItem);
             } else {
@@ -80,12 +80,15 @@ public class Checklist {
         if (fileNotExisted) {
             System.out.printf("File created at: %s", fileLocation);
         } else {
-            System.out.printf("Writing to: %s", fileLocation);
+            System.out.printf("Writing to: %s \n", fileLocation);
         }
 
         FileWriter writer = new FileWriter(fileLocation);
         for (ChecklistItem checklistItem : checklistItems) {
-            writer.write(checklistItem.getNameLabel() + System.lineSeparator());
+            System.out.println(checklistItem.getNameLabel());
+            if (!checklistItem.isChecked()){
+                writer.write(checklistItem.getNameLabel() + System.lineSeparator());
+            }
         }
         writer.close();
     }
@@ -104,7 +107,6 @@ public class Checklist {
                     System.out.println(data);
                     ChecklistItem item = new ChecklistItem(data, this);
                     addItem(item);
-                    System.out.println(visibleChecklist.getChildren());
                 }
                 myReader.close();
             } catch (FileNotFoundException e) {

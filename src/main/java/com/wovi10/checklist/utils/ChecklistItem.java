@@ -49,7 +49,7 @@ public class ChecklistItem {
     public String getNameLabel() {
         return nameLabel.getText();
     }
-    public boolean getChecked() {
+    public boolean isChecked() {
         return isChecked;
     }
     //endregion
@@ -94,5 +94,12 @@ public class ChecklistItem {
      */
     private void changeState() {
         isChecked = !isChecked;
+        System.out.println(this);
+    }
+
+    @Override
+    public String toString() {
+        return "nameLabel=" + nameLabel.getText() +
+                ", isChecked=" + isChecked;
     }
 }
