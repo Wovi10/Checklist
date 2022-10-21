@@ -62,7 +62,10 @@ public class ChecklistItem {
      */
     private Button create_deleteButton(HBox item) {
         Button button = new Button(DELETE_TEXT);
-        EventHandler<MouseEvent> eventHandler = mouseEvent -> parent.getChildren().remove(item);
+        EventHandler<MouseEvent> eventHandler = mouseEvent -> {
+            changeState();
+            parent.getChildren().remove(item);
+        };
         button.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
         button.setAlignment(Pos.CENTER_RIGHT);
         return button;
