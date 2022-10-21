@@ -61,14 +61,14 @@ public class Checklist {
      * Clear only completed items from checklist.
      */
     public void clearCompleted() {
-        ObservableList<Node> visibleChecklist = this.visibleChecklist.getChildren();
-        visibleChecklist.clear();
+        visibleChecklist.getChildren().clear();
         for (ChecklistItem checklistItem : checklistItems) {
             boolean isCompleted = checklistItem.isChecked();
             if (isCompleted) {
                 checklistItems.remove(checklistItem);
-            } else {
-                visibleChecklist.add(checklistItem.getItem());
+//                visibleChecklist.getChildren().remove(checklistItem.getItem());
+            }else{
+                visibleChecklist.getChildren().add(checklistItem.getItem());
             }
         }
     }
@@ -76,16 +76,11 @@ public class Checklist {
     public void saveItems() throws IOException {
         String fileLocation = String.valueOf(Objects.requireNonNull(ChecklistController.class.getResource("savedChecklist.txt")).getPath());
         File yourFile = new File(fileLocation);
-        boolean fileNotExisted = yourFile.createNewFile();
-        if (fileNotExisted) {
-            System.out.printf("File created at: %s", fileLocation);
-        } else {
-            System.out.printf("Writing to: %s \n", fileLocation);
-        }
+        yourFile.createNewFile();
+        System.out.printf("Writing to: %s \n", fileLocation);
 
         FileWriter writer = new FileWriter(fileLocation);
         for (ChecklistItem checklistItem : checklistItems) {
-            System.out.println(checklistItem.getNameLabel());
             if (!checklistItem.isChecked()){
                 writer.write(checklistItem.getNameLabel() + System.lineSeparator());
             }
@@ -98,13 +93,11 @@ public class Checklist {
         File yourFile = new File(fileLocation);
         boolean fileNotExisted = yourFile.createNewFile();
         if (!fileNotExisted) {
-            System.out.printf("Reading from: %s \n", fileLocation);
             try {
                 File myObj = new File(fileLocation);
                 Scanner myReader = new Scanner(myObj);
                 while (myReader.hasNextLine()) {
                     String data = myReader.nextLine();
-                    System.out.println(data);
                     ChecklistItem item = new ChecklistItem(data, this);
                     addItem(item);
                 }

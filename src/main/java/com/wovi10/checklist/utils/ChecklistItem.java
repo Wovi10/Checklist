@@ -94,7 +94,6 @@ public class ChecklistItem {
      */
     private void changeState() {
         isChecked = !isChecked;
-        System.out.println(this);
     }
 
     @Override
