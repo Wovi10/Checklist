@@ -55,22 +55,22 @@ public class Checklist {
      */
     public void clearAll() {
         visibleChecklist.getChildren().clear();
+        checklistItems.clear();
     }
 
     /**
      * Clear only completed items from checklist.
      */
     public void clearCompleted() {
-        visibleChecklist.getChildren().clear();
+        List<ChecklistItem> itemsToRemove = new ArrayList<>();
         for (ChecklistItem checklistItem : checklistItems) {
             boolean isCompleted = checklistItem.isChecked();
             if (isCompleted) {
-                checklistItems.remove(checklistItem);
-//                visibleChecklist.getChildren().remove(checklistItem.getItem());
-            }else{
-                visibleChecklist.getChildren().add(checklistItem.getItem());
+                itemsToRemove.add(checklistItem);
+                visibleChecklist.getChildren().remove(checklistItem.getItem());
             }
         }
+        checklistItems.removeAll(itemsToRemove);
     }
 
     public void saveItems() throws IOException {
