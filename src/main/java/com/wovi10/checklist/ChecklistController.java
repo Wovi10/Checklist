@@ -3,7 +3,6 @@ package com.wovi10.checklist;
 import com.wovi10.checklist.utils.Checklist;
 import com.wovi10.checklist.utils.ChecklistItem;
 import com.wovi10.checklist.utils.ChecklistPopup;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -40,11 +39,13 @@ public class ChecklistController {
     @FXML
     protected void onAddButtonClick() {
         String itemName = requestItemName();
-        ChecklistItem item = createItem(itemName);
-        checklist.addItem(item);
-        boolean checklistIsInitialised = program.getChildren().contains(checklist.getVisibleChecklist());
-        if (!checklistIsInitialised) {
-            program.getChildren().add(checklist.getVisibleChecklist());
+        if (!itemName.isEmpty()) {
+            ChecklistItem item = createItem(itemName);
+            checklist.addItem(item);
+            boolean checklistIsInitialised = program.getChildren().contains(checklist.getVisibleChecklist());
+            if (!checklistIsInitialised) {
+                program.getChildren().add(checklist.getVisibleChecklist());
+            }
         }
     }
 

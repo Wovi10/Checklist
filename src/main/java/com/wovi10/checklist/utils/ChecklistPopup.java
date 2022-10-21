@@ -28,14 +28,9 @@ public class ChecklistPopup {
         popupBox.showAndWait();
     }
 
-    //region Getters and Setters
-    public String getItemToAdd() {
-        return itemToAdd;
-    }
-    //endregion
-
     /**
      * Create the content to go on to the popup.
+     *
      * @return The content to go on to the popup.
      */
     private VBox create_popupContent() {
@@ -46,9 +41,11 @@ public class ChecklistPopup {
         popupContent.getChildren().addAll(questionLabel, answerField, answerButton);
         return popupContent;
     }
+    //endregion
 
     /**
      * Creates the button for on the popup.
+     *
      * @param answerField The field in which the answer will be typed.
      * @return The answer button for on the popup.
      */
@@ -60,11 +57,17 @@ public class ChecklistPopup {
 
     /**
      * Reads input and sets the answer.
+     *
      * @param answerField The field in which the answer will be put.
      */
     private void giveAnswer(TextField answerField) {
         itemToAdd = answerField.getText();
         popupBox.close();
+    }
+
+    //region Getters and Setters
+    public String getItemToAdd() {
+        return itemToAdd;
     }
 
 }

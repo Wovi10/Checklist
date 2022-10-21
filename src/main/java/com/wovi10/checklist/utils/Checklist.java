@@ -1,11 +1,12 @@
 package com.wovi10.checklist.utils;
 
 import com.wovi10.checklist.ChecklistController;
-import javafx.collections.ObservableList;
-import javafx.scene.Node;
 import javafx.scene.layout.VBox;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -21,7 +22,7 @@ import java.util.Scanner;
 public class Checklist {
 
     private final VBox visibleChecklist;
-    private List<ChecklistItem> checklistItems = new ArrayList<>();
+    private final List<ChecklistItem> checklistItems;
 
     public Checklist() {
         this.visibleChecklist = new VBox();
@@ -33,22 +34,7 @@ public class Checklist {
         return visibleChecklist;
     }
 
-    public List<ChecklistItem> getChecklistItems() {
-        return checklistItems;
-    }
     //endregion
-
-    /**
-     * If item is valid, add it to checklist.
-     *
-     * @param item Item to add.
-     */
-    public void addItem(ChecklistItem item) {
-        if (item != null) {
-            visibleChecklist.getChildren().add(item.getItem());
-            checklistItems.add(item);
-        }
-    }
 
     /**
      * Clear all items from checklist.
@@ -81,7 +67,7 @@ public class Checklist {
 
         FileWriter writer = new FileWriter(fileLocation);
         for (ChecklistItem checklistItem : checklistItems) {
-            if (!checklistItem.isChecked()){
+            if (!checklistItem.isChecked()) {
                 writer.write(checklistItem.getNameLabel() + System.lineSeparator());
             }
         }
@@ -106,6 +92,18 @@ public class Checklist {
                 System.out.println("An error occurred.");
                 e.printStackTrace();
             }
+        }
+    }
+
+    /**
+     * If item is valid, add it to checklist.
+     *
+     * @param item Item to add.
+     */
+    public void addItem(ChecklistItem item) {
+        if (item != null) {
+            visibleChecklist.getChildren().add(item.getItem());
+            checklistItems.add(item);
         }
     }
 }

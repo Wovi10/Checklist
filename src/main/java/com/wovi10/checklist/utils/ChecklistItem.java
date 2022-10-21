@@ -13,7 +13,8 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
-import static com.wovi10.checklist.Constants.ChecklistConstants.*;
+import static com.wovi10.checklist.Constants.ChecklistConstants.DELETE_TEXT;
+import static com.wovi10.checklist.Constants.ChecklistConstants.STRIKETHROUGH_FILE;
 
 /**
  * ChecklistItem
@@ -41,18 +42,6 @@ public class ChecklistItem {
         HBox.setHgrow(spacer, Priority.ALWAYS);
         item.getChildren().addAll(checkBox, nameLabel, spacer, deleteButton);
     }
-
-    //region Getters and Setters
-    public HBox getItem() {
-        return item;
-    }
-    public String getNameLabel() {
-        return nameLabel.getText();
-    }
-    public boolean isChecked() {
-        return isChecked;
-    }
-    //endregion
 
     /**
      * Create delete button for specific checklist item.
@@ -97,6 +86,20 @@ public class ChecklistItem {
      */
     private void changeState() {
         isChecked = !isChecked;
+    }
+    //endregion
+
+    //region Getters and Setters
+    public HBox getItem() {
+        return item;
+    }
+
+    public String getNameLabel() {
+        return nameLabel.getText();
+    }
+
+    public boolean isChecked() {
+        return isChecked;
     }
 
     @Override
