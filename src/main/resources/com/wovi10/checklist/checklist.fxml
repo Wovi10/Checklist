@@ -10,13 +10,13 @@
       xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.wovi10.checklist.ChecklistController">
-        <VBox fx:id="program" styleClass="checklist">
-            <HBox spacing="10" styleClass="header_buttons">
-                <Button text="Add" onAction="#onAddButtonClick" alignment="TOP_LEFT" styleClass="header_buttons_left"/>
-                <Button text="Clear completed" onAction="#onClearButtonClick" alignment="TOP_LEFT" styleClass="header_buttons_left"/>
+        <VBox fx:id="program" styleClass="vbox">
+            <HBox spacing="10" styleClass="hbox">
+                <Button text="Add" onAction="#onAddButtonClick" alignment="TOP_LEFT" styleClass="button left"/>
+                <Button text="Clear completed" onAction="#onClearButtonClick" alignment="TOP_LEFT" styleClass="button left"/>
                 <Pane fx:id="spacer" prefWidth="100" prefHeight="10" HBox.hgrow="ALWAYS"/>
-                <Button text="Save" onAction="#onSaveButtonClick" styleClass="header_buttons_right"/>
-                <Button text="Clear all" onAction="#onClearAllButtonClick" styleClass="header_buttons_right"/>
+                <Button text="Save" onAction="#onSaveButtonClick" styleClass="button right"/>
+                <Button text="Clear all" onAction="#onClearAllButtonClick" styleClass="button right"/>
             </HBox>
         </VBox>
     <stylesheets>

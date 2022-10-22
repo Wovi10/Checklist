@@ -1,18 +1,30 @@
+.scroll-pane > .viewport {
+   -fx-background-color: transparent;
+}
 .program{
-    -fx-border-color: blue;
     -fx-fix-to-width: true;
     -fx-background-color: #202124;
 }
-.header_buttons{
+.vbox{
+    -fx-border-color: blue;
+    -fx-padding: 10;
+    -fx-alignment: top-center;
+}
+.hbox{
+    -fx-padding: 15;
+    -fx-spacing: 10;
     -fx-spacing: 10px;
     -fx-border-color: red;
-    -fx-fill-width: true;
 }
-.header_buttons Button{
+.button{
 }
-.header_buttons .header_buttons_left{
-    -fx-alignment: TOP_LEFT;
+.left{
+    -fx-alignment: top-left;
 }
-.header_buttons .header_buttons_right{
-    -fx-alignment: TOP_RIGHT;
+.right{
+    -fx-alignment: top-right;
+}
+
+Label{
+    -fx-text-fill: #bdc1c6;
 }
