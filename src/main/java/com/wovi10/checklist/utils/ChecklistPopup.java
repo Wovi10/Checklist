@@ -37,6 +37,7 @@ public class ChecklistPopup {
         Label questionLabel = new Label(POPUP_QUESTION);
         TextField answerField = new TextField();
         Button answerButton = create_answerButton(answerField);
+        answerButton.setDefaultButton(true);
         VBox popupContent = new VBox();
         popupContent.getChildren().addAll(questionLabel, answerField, answerButton);
         return popupContent;

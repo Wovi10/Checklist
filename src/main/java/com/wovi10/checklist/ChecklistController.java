@@ -4,10 +4,17 @@ import com.wovi10.checklist.utils.Checklist;
 import com.wovi10.checklist.utils.ChecklistItem;
 import com.wovi10.checklist.utils.ChecklistPopup;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 import java.io.IOException;
+
+import static com.wovi10.checklist.Constants.PopupConstants.*;
 
 /**
  * ChecklistController
@@ -21,6 +28,7 @@ public class ChecklistController {
     public VBox program;
     @FXML
     public Pane spacer;
+    public Button saveButton;
 
     public void initialize() throws IOException {
         checklist.loadItems();
@@ -39,7 +47,7 @@ public class ChecklistController {
     @FXML
     protected void onAddButtonClick() {
         String itemName = requestItemName();
-        if (!itemName.isEmpty()) {
+        if (itemName != null && !itemName.isEmpty()) {
             ChecklistItem item = createItem(itemName);
             checklist.addItem(item);
             boolean checklistIsInitialised = program.getChildren().contains(checklist.getVisibleChecklist());

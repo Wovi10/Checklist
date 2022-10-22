@@ -1,7 +1,11 @@
 package com.wovi10.checklist.utils;
 
 import com.wovi10.checklist.ChecklistController;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -72,8 +76,23 @@ public class Checklist {
             }
         }
         writer.close();
+        showSavedPopup();
     }
 
+    /**
+     * Shows popup to mention to the user save has happened
+     */
+    private static void showSavedPopup() {
+        Stage popupBox = new Stage();
+        Label message = new Label("Document saved");
+        Button okButton = new Button("OK");
+        okButton.setOnAction(e -> popupBox.close());
+        VBox popupContent = new VBox();
+        popupContent.getChildren().addAll(message, okButton);
+        Scene scene = new Scene(popupContent, 100, 100);
+        popupBox.setScene(scene);
+        popupBox.showAndWait();
+    }
     public void loadItems() throws IOException {
         String fileLocation = String.valueOf(Objects.requireNonNull(ChecklistController.class.getResource("savedChecklist.txt")).getPath());
         File yourFile = new File(fileLocation);

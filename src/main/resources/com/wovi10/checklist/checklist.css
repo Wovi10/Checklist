@@ -32,7 +32,8 @@
 .checklistItem{
     -fx-padding: 5;
     -fx-alignment: center;
-    
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: black;
 }
 .checklistLabel{
     -fx-text-fill: #bdc1c6;

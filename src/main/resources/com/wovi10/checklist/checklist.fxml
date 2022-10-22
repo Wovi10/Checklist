@@ -15,7 +15,7 @@
                 <Button text="Add" onAction="#onAddButtonClick" styleClass="button left"/>
                 <Button text="Clear completed" onAction="#onClearButtonClick" styleClass="button left"/>
                 <Pane fx:id="spacer" prefWidth="100" prefHeight="10" HBox.hgrow="ALWAYS"/>
-                <Button text="Save" onAction="#onSaveButtonClick" styleClass="button right"/>
+                <Button fx:id="saveButton" text="Save" onAction="#onSaveButtonClick" styleClass="button right"/>
                 <Button text="Clear all" onAction="#onClearAllButtonClick" styleClass="button right"/>
             </HBox>
         </VBox>
