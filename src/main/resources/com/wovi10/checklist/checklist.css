@@ -3,31 +3,41 @@
 }
 .program{
     -fx-fix-to-width: true;
-    -fx-background-color: #202124;
+    -fx-background-color: black;
 }
 .vbox{
-    -fx-border-color: blue;
-    -fx-padding: 10;
+    width: 495;
+    -fx-min-width: width;
+    -fx-max-width: width;
     -fx-spacing: 10;
+    -fx-padding: 20 20 0 20;
     -fx-alignment: top-center;
 }
 .hbox{
     -fx-spacing: 10;
-    -fx-border-color: red;
+    -fx-padding: 5 5 15 5;
+    -fx-background-color: black;
 }
-.button{
-}
+
 .left{
     -fx-alignment: top-left;
 }
 .right{
     -fx-alignment: top-right;
 }
-
-Label{
-    -fx-text-fill: #bdc1c6;
-    -fx-padding: 5px;
+.checklist{
+    -fx-background-radius: 5,5,4;
 }
-CheckBox{
-    -fx-padding: 5px;
+.checklistItem{
+    -fx-background-radius: 5,5,4;
+    -fx-background-color: #202124;
+    -fx-padding: 5;
+    -fx-alignment: center;
+}
+.checklistLabel{
+    -fx-text-fill: #bdc1c6;
+    -fx-padding: 0 0 0 10;
+}
+.checklistDelete{
+    -fx-padding: 0 0 0 1;
 }

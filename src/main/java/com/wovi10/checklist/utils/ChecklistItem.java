@@ -40,6 +40,9 @@ public class ChecklistItem {
 
         Pane spacer = new Pane();
         HBox.setHgrow(spacer, Priority.ALWAYS);
+        item.getStyleClass().add("checklistItem");
+        nameLabel.getStyleClass().add("checklistLabel");
+        parent.getVisibleChecklist().getStyleClass().add("checklist");
         item.getChildren().addAll(checkBox, nameLabel, spacer, deleteButton);
     }
 
