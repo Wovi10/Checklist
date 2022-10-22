@@ -1,0 +1,15 @@
+.program{
+    -fx-border-color: blue;
+    -fx-min-width: 100%;
+}
+
+.header_buttons{
+    -fx-padding: 10px;
+    -fx-border-color: red;
+}
+.header_buttons header_buttons_left{
+    -fx-float: left;
+}
+.header_buttons header_buttons_right{
+    -fx-float: right;
+}
