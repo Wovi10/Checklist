@@ -1,15 +1,18 @@
 .program{
     -fx-border-color: blue;
-    -fx-min-width: 100%;
+    -fx-fix-to-width: true;
+    -fx-background-color: #202124;
 }
-
 .header_buttons{
-    -fx-padding: 10px;
+    -fx-spacing: 10px;
     -fx-border-color: red;
+    -fx-fill-width: true;
 }
-.header_buttons header_buttons_left{
-    -fx-float: left;
+.header_buttons Button{
 }
-.header_buttons header_buttons_right{
-    -fx-float: right;
+.header_buttons .header_buttons_left{
+    -fx-alignment: TOP_LEFT;
+}
+.header_buttons .header_buttons_right{
+    -fx-alignment: TOP_RIGHT;
 }

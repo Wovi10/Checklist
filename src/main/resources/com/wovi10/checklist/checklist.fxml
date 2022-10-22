@@ -1,24 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.ScrollPane?>
 <?import java.net.URL?>
 <ScrollPane
         styleClass="program"
       xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.wovi10.checklist.ChecklistController">
-        <VBox fx:id="program">
+        <VBox fx:id="program" styleClass="checklist">
             <HBox spacing="10" styleClass="header_buttons">
                 <Button text="Add" onAction="#onAddButtonClick" alignment="TOP_LEFT" styleClass="header_buttons_left"/>
                 <Button text="Clear completed" onAction="#onClearButtonClick" alignment="TOP_LEFT" styleClass="header_buttons_left"/>
                 <Pane fx:id="spacer" prefWidth="100" prefHeight="10" HBox.hgrow="ALWAYS"/>
-                <Button text="Save" onAction="#onSaveButtonClick" alignment="TOP_RIGHT" styleClass="header_buttons_right"/>
-                <Button text="Clear all" onAction="#onClearAllButtonClick" alignment="TOP_RIGHT" styleClass="header_buttons_right"/>
+                <Button text="Save" onAction="#onSaveButtonClick" styleClass="header_buttons_right"/>
+                <Button text="Clear all" onAction="#onClearAllButtonClick" styleClass="header_buttons_right"/>
             </HBox>
         </VBox>
     <stylesheets>
