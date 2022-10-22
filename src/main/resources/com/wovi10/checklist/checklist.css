@@ -8,12 +8,11 @@
 .vbox{
     -fx-border-color: blue;
     -fx-padding: 10;
+    -fx-spacing: 10;
     -fx-alignment: top-center;
 }
 .hbox{
-    -fx-padding: 15;
     -fx-spacing: 10;
-    -fx-spacing: 10px;
     -fx-border-color: red;
 }
 .button{
@@ -27,4 +26,8 @@
 
 Label{
     -fx-text-fill: #bdc1c6;
+    -fx-padding: 5px;
+}
+CheckBox{
+    -fx-padding: 5px;
 }
