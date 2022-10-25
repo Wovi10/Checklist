@@ -108,8 +108,7 @@ public class Checklist {
                 }
                 myReader.close();
             } catch (FileNotFoundException e) {
-                System.out.println("An error occurred.");
-                e.printStackTrace();
+                Debug.fileNotFound_error_Print(e);
             }
         }
     }
