@@ -67,7 +67,7 @@ public class Checklist {
         String fileLocation = String.valueOf(Objects.requireNonNull(ChecklistController.class.getResource("savedChecklist.txt")).getPath());
         File yourFile = new File(fileLocation);
         yourFile.createNewFile();
-        System.out.printf("Writing to: %s \n", fileLocation);
+        Debug.fileDebug_Print(DebugHelp.To, fileLocation);
 
         FileWriter writer = new FileWriter(fileLocation);
         for (ChecklistItem checklistItem : checklistItems) {
